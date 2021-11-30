@@ -4,7 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Assets {
-    private AssetManager manager;
+    static private AssetManager manager;
 
     public Assets() {
         manager = new AssetManager();
@@ -13,7 +13,7 @@ public class Assets {
         manager.finishLoading();
     }
 
-    public TextureAtlas getAtlas(String fileName) {
+    static public TextureAtlas getAtlas(String fileName) {
         return manager.get(fileName);
     }
 
