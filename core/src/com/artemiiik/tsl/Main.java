@@ -19,7 +19,7 @@ public class Main extends Game {
 		gameScreen = new GameScreen();
 		assets = new Assets();
 		// adding texture atlasses to screens
-		// ex. ((GameScreen)gameScreen).setTextureAtlas(assets.getManager().get("atlas.atlas"));
+		// ex. ((GameScreen)gameScreen).setTextureAtlas(assets.getAtlas("atlas.atlas"));
 		setScreen(gameScreen);
 	}
 	

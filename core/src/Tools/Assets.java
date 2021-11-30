@@ -1,6 +1,7 @@
 package Tools;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Assets {
     private AssetManager manager;
@@ -12,8 +13,8 @@ public class Assets {
         manager.finishLoading();
     }
 
-    public AssetManager getManager() {
-        return manager;
+    public TextureAtlas getAtlas(String fileName) {
+        return manager.get(fileName);
     }
 
     public void dispose() {
