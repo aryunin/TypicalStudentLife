@@ -26,8 +26,6 @@ abstract public class GameObject {
     }
 
     public void draw(SpriteBatch batch) {
-        sprite.setPosition(bounds.getX(), bounds.getY());
-        sprite.setRotation(bounds.getRotation());
         sprite.draw(batch);
     }
 }
