@@ -2,11 +2,10 @@ package Model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import java.awt.geom.Point2D;
 
 public class StaticObject extends GameObject {
-    public StaticObject(TextureRegion region, Point2D pos, float width, float height, float angle) {
-        super(region, pos, width, height, angle);
+    public StaticObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
+        super(region, posX, posY, width, height, angle);
     }
 
     @Override
