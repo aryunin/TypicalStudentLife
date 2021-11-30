@@ -1,0 +1,20 @@
+
+TestAtlas.png
+size: 2048, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+BG
+  rotate: false
+  xy: 2, 69
+  size: 1417, 945
+  orig: 1417, 945
+  offset: 0, 0
+  index: -1
+RecordBook
+  rotate: false
+  xy: 2, 2
+  size: 80, 65
+  orig: 80, 65
+  offset: 0, 0
+  index: -1

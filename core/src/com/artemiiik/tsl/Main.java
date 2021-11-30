@@ -13,8 +13,8 @@ public class Main extends Game {
 	public void create () {
 		gameScreen = new GameScreen();
 		assets = new Assets();
-		// adding texture atlasses to screens
-		// ex. ((GameScreen)gameScreen).setTextureAtlas(assets.getAtlas("atlas.atlas"));
+		// adding texture atlases to screens
+		((GameScreen)gameScreen).setTextureAtlas(assets.getAtlas("TestAtlas.atlas"));
 		setScreen(gameScreen);
 	}
 	
