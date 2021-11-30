@@ -28,4 +28,8 @@ abstract public class GameObject {
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
     }
+
+    public Polygon getBounds() {
+        return bounds;
+    }
 }
