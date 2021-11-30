@@ -9,6 +9,10 @@ public class Actor extends GameObject{
         super(region, pos, width, height, angle);
     }
 
+    public void update(float delta) {
+
+    }
+
     @Override
     public void draw(SpriteBatch batch) {
         sprite.setPosition(bounds.getX(), bounds.getY());
