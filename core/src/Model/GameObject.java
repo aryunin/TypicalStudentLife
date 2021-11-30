@@ -29,6 +29,8 @@ abstract public class GameObject {
         sprite.draw(batch);
     }
 
+    public abstract void update(float delta);
+
     public Polygon getBounds() {
         return bounds;
     }

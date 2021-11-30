@@ -3,7 +3,6 @@ package View;
 import Controller.InputHandler;
 import Model.Actor;
 import Model.GameObject;
-import Model.StaticObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,8 +13,6 @@ import com.badlogic.gdx.utils.Array;
 public class GameScreen implements Screen {
     private TextureAtlas atlas;
     private SpriteBatch batch;
-    private Array<StaticObject> staticObjects;
-    private Array<Actor> actors;
     private Array<GameObject> objects;
 
     public void setTextureAtlas(TextureAtlas atlas) {
@@ -25,13 +22,9 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         batch = new SpriteBatch();
-        staticObjects = new Array<>();
-        // Add your static objects here
-        actors = new Array<>();
-        // Add your actors here
         objects = new Array<>();
-        objects.addAll(staticObjects);
-        objects.addAll(actors);
+        // Add objects here
+
     }
 
     @Override
@@ -39,15 +32,9 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Control
-        InputHandler.handleInput();
-        for (Actor actor : actors) {
-            actor.update(delta);
-        }
-
-        // Render
         batch.begin();
         for (GameObject object : objects) {
+            object.update(delta);
             object.draw(batch);
         }
         batch.end();

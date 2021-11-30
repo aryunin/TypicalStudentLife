@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Actor;
 
-abstract class ActorController {
+abstract public class ActorController {
     Actor actor;
     Command command;
     public ActorController(Actor actor) {
