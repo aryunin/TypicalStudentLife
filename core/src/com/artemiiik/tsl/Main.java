@@ -1,8 +1,3 @@
-/*
- * Created by aryunin on 2021.11.28
- * TypicalStudentLife
- */
-
 package com.artemiiik.tsl;
 
 import Tools.Assets;
