@@ -7,4 +7,8 @@ public class InputHandler {
         // Type your commands here
         command = null;
     }
+
+    static public Command getCurrentCommand() {
+        return command;
+    }
 }
