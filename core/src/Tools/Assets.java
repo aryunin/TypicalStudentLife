@@ -9,7 +9,7 @@ public class Assets {
     public Assets() {
         manager = new AssetManager();
         // loading atlas
-        // ex. manager.load("Atlas.atlas", TextureAtlas.class);
+        manager.load("TestAtlas.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
 

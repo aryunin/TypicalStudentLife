@@ -1,8 +1,9 @@
 package View;
 
 import Controller.InputHandler;
-import Model.Actor;
+import Model.Background;
 import Model.GameObject;
+import Model.RecordBook;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,12 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 
-import java.awt.geom.Point2D;
-
 public class GameScreen implements Screen {
     private TextureAtlas atlas;
     private SpriteBatch batch;
     private Array<GameObject> objects;
+    static public float deltaCff;
 
     public void setTextureAtlas(TextureAtlas atlas) {
         this.atlas = atlas;
@@ -25,18 +25,23 @@ public class GameScreen implements Screen {
     public void show() {
         batch = new SpriteBatch();
         objects = new Array<>();
-        // Add objects here
-        objects.add(new Actor(atlas.findRegion("RecordBook"),0, 0, 80, 65,0));
+        // Add new objects here
+        objects.add(new Background(atlas, 0, 0));
+        objects.add(new RecordBook(atlas, 0, 0));
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.5f,0.5f,0.5f,1);
+        deltaCff = delta;
+
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        InputHandler.handleInput();
 
         batch.begin();
         for (GameObject object : objects) {
-            object.update(delta);
+            object.update();
             object.draw(batch);
         }
         batch.end();

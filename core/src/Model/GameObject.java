@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Vector2;
 
 abstract public class GameObject {
     Sprite sprite;
@@ -23,13 +24,19 @@ abstract public class GameObject {
         sprite.setRotation(angle);
     }
 
-    public void draw(SpriteBatch batch) {
-        sprite.draw(batch);
-    }
-
-    public abstract void update(float delta);
-
     public Polygon getBounds() {
         return bounds;
     }
+
+    public void draw(SpriteBatch batch) {
+        sprite.setPosition(bounds.getX(), bounds.getY());
+        sprite.setRotation(bounds.getRotation());
+        sprite.draw(batch);
+    }
+
+    public void move(float offsetX, float offsetY) {
+        bounds.setPosition(bounds.getX() + offsetX, bounds.getY() + offsetY);
+    }
+
+    public abstract void update();
 }
