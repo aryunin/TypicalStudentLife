@@ -9,11 +9,11 @@ public class Assets {
     public Assets() {
         manager = new AssetManager();
         // loading atlas
-        manager.load("TestAtlas.atlas", TextureAtlas.class);
+        manager.load("GameScreen.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
 
-    static public TextureAtlas getAtlas(String fileName) {
+    public TextureAtlas getAtlas(String fileName) {
         return manager.get(fileName);
     }
 

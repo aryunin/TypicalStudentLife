@@ -1,28 +1,20 @@
 package Controller;
 
-public class FallingObjectController extends ObjectController {
-    @Override
+import Model.FallingObject;
+import com.badlogic.gdx.Gdx;
+
+import static View.GameScreen.deltaCff;
+
+public class FallingObjectController {
+    private FallingObject fallingObject;
+    private float speed;
+
+    public FallingObjectController(FallingObject fallingObject) {
+        this.fallingObject = fallingObject;
+        speed = Gdx.graphics.getHeight()/2f;
+    }
+
     public void update() {
-        super.update();
-    }
-
-    @Override
-    public void moveUp() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
-    }
-
-    @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
+        fallingObject.move(0,-speed*deltaCff);
     }
 }
