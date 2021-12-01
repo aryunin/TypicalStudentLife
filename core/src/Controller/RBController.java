@@ -16,7 +16,7 @@ public class RBController extends ObjectController {
         bounds = recordBook.getBounds().getVertices();
         posX = recordBook.getBounds().getX();
         posY = recordBook.getBounds().getY();
-        speed = 400;
+        speed = Gdx.graphics.getWidth()/2f;
     }
 
     @Override
