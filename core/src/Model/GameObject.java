@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 
 abstract public class GameObject {
-    Sprite sprite;
-    Polygon bounds;
+    private Sprite sprite;
+    private Polygon bounds;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
@@ -24,14 +24,14 @@ abstract public class GameObject {
         sprite.setRotation(angle);
     }
 
-    public Polygon getBounds() {
-        return bounds;
-    }
-
     public void draw(SpriteBatch batch) {
         sprite.setPosition(bounds.getX(), bounds.getY());
         sprite.setRotation(bounds.getRotation());
         sprite.draw(batch);
+    }
+
+    public Polygon getBounds() {
+        return bounds;
     }
 
     public void move(float offsetX, float offsetY) {

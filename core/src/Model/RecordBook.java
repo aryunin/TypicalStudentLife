@@ -5,7 +5,7 @@ import Controller.RBController;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class RecordBook extends GameObject{
-    ObjectController controller;
+    private ObjectController controller;
 
     public RecordBook(TextureAtlas atlas, float posX, float posY) {
         super(atlas.findRegion("RecordBook"), posX, posY, 80, 65, 0);
