@@ -16,10 +16,16 @@ import static com.artemiiik.tsl.Main.random;
 
 public class GameScreen implements Screen {
     private SpriteBatch batch;
-    private Array<GameObject> objects;
-
+    private float fallDelay;
+    private float fallTimer;
     static public TextureAtlas atlas;
     static public float deltaCff;
+
+    /** Objects **/
+    private Background background;
+    private RecordBook recordBook;
+    private Array<GameObject> fallers;
+
 
     public void setTextureAtlas(TextureAtlas atlas) {
         this.atlas = atlas;
@@ -29,13 +35,21 @@ public class GameScreen implements Screen {
         return min + random.nextFloat() * (max - min + 1);
     }
 
+    private void createFaller() {
+        Factory fallersFactory = Factory.getRandomFactory();
+        float fallerPosX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
+        float fallerPosY = Gdx.graphics.getHeight();
+        fallers.add(fallersFactory.create(fallerPosX, fallerPosY));
+    }
+
     @Override
     public void show() {
         batch = new SpriteBatch();
-        objects = new Array<>();
-        // Add new objects here
-        objects.add(new Background(0, 0));
-        objects.add(new RecordBook(0, 0));
+        fallers = new Array<>();
+        background = new Background(0, 0);
+        recordBook = new RecordBook(0, 0);
+        fallDelay = 2f;
+        fallTimer = fallDelay;
     }
 
     @Override
@@ -43,17 +57,22 @@ public class GameScreen implements Screen {
         deltaCff = delta;
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         InputHandler.handleInput();
 
-        Factory fallersFactory = Factory.getRandomFactory();
-        float fallerPosX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
-        float fallerPosY = Gdx.graphics.getHeight();
-        objects.add(fallersFactory.create(fallerPosX, fallerPosY));
+        fallTimer -= delta;
+        if(fallTimer <= 0) {
+            createFaller();
+            fallTimer = fallDelay;
+        }
 
         batch.begin();
-        for (GameObject object : objects) {
-            object.update();
-            object.draw(batch);
+        background.draw(batch);
+        recordBook.update();
+        recordBook.draw(batch);
+        for (GameObject faller : fallers) {
+            faller.update();
+            faller.draw(batch);
         }
         batch.end();
     }
