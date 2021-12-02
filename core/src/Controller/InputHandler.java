@@ -1,5 +1,9 @@
 package Controller;
 
+import Controller.Commands.MoveDownCommand;
+import Controller.Commands.MoveLeftCommand;
+import Controller.Commands.MoveRightCommand;
+import Controller.Commands.MoveUpCommand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 

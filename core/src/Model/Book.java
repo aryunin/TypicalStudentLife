@@ -1,9 +1,12 @@
 package Model;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import Controller.ObjectControllers.Thrower;
 
-public class Book extends FallingObject{
-    public Book(TextureAtlas atlas, float posX, float posY) {
+import static View.GameScreen.atlas;
+
+public class Book extends GameObject{
+    public Book(float posX, float posY) {
         super(atlas.findRegion("Book"), posX, posY, 100f, 100f, 0f);
+        controller = new Thrower(this);
     }
 }

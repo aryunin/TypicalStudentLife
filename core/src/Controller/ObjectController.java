@@ -1,7 +1,7 @@
 package Controller;
 
 abstract public class ObjectController {
-    Command command;
+    protected Command command;
 
     public void update() {
         command = InputHandler.getCurrentCommand();

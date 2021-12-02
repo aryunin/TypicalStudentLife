@@ -1,14 +1,15 @@
 package Model;
 
+import Controller.ObjectController;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Vector2;
 
 abstract public class GameObject {
     private Sprite sprite;
     private Polygon bounds;
+    protected ObjectController controller;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
@@ -38,5 +39,7 @@ abstract public class GameObject {
         bounds.setPosition(bounds.getX() + offsetX, bounds.getY() + offsetY);
     }
 
-    public abstract void update();
+    public void update() {
+        if(controller != null) controller.update();
+    }
 }

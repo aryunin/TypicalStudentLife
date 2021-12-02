@@ -1,5 +1,6 @@
-package Controller;
+package Controller.ObjectControllers;
 
+import Controller.ObjectController;
 import Model.RecordBook;
 import com.badlogic.gdx.Gdx;
 
