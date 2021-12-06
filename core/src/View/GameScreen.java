@@ -19,18 +19,13 @@ import java.util.Map;
 import static com.artemiiik.tsl.Main.random;
 
 public class GameScreen implements Screen {
-    private SpriteBatch batch;
-    private float fallDelay;
-    private float fallTimer;
-    private CollisionChecker collision; // TODO
     static public TextureAtlas atlas;
     static public float deltaCff;
-
-    /** Layers **/
+    private SpriteBatch batch;
     private Map<String, Layer> layers;
-    private Layer backgroundLayer;
-    private Layer actorsLayer;
-    private Layer collisionLayer;
+    private CollisionChecker collision;
+    private float fallDelay;
+    private float fallTimer;
 
     public void setTextureAtlas(TextureAtlas atlas) {
         this.atlas = atlas;
@@ -40,25 +35,35 @@ public class GameScreen implements Screen {
         return min + random.nextFloat() * (max - min + 1);
     }
 
+    private void addLayer(String layerName) {
+        layers.put(layerName, new Layer());
+    }
+
+    private void addObject(String layerName, GameObject object) {
+        layers.get(layerName).objects.add(object);
+    }
+
     private void createFaller() {
         Factory fallersFactory = Factory.getRandomFactory();
         float fallerPosX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
         float fallerPosY = Gdx.graphics.getHeight();
-        layers.get("CollisionLayer").objects.add(fallersFactory.create(fallerPosX, fallerPosY));
+        addObject("CollisionLayer", fallersFactory.create(fallerPosX, fallerPosY));
     }
 
     @Override
     public void show() {
+        deltaCff = 0;
         batch = new SpriteBatch();
         layers = new HashMap<>();
-        layers.put("BackgroundLayer", new Layer());
-        layers.put("ActorsLayer", new Layer());
-        layers.put("CollisionLayer", new Layer());
+        addLayer("BackgroundLayer");
+        addLayer("ActorsLayer");
+        addLayer("CollisionLayer");
         collision = new CollisionChecker(layers.get("ActorsLayer").objects, layers.get("CollisionLayer").objects);
         fallDelay = 2f;
         fallTimer = fallDelay;
-        layers.get("BackgroundLayer").objects.add(new Background(0, 0));
-        layers.get("ActorsLayer").objects.add(new RecordBook(0, 0));
+
+        addObject("BackgroundLayer", new Background(0, 0));
+        addObject("ActorsLayer", new RecordBook(0, 0));
     }
 
     @Override
