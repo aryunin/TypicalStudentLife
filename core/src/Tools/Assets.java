@@ -8,13 +8,12 @@ public class Assets {
 
     public Assets() {
         manager = new AssetManager();
-        // loading atlas
         manager.load("GameScreen.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
 
-    public TextureAtlas getAtlas(String fileName) {
-        return manager.get(fileName);
+    static public TextureAtlas getAtlas(String atlasName) {
+        return manager.get(atlasName);
     }
 
     public void dispose() {
