@@ -6,7 +6,7 @@ import Model.GameObject;
 
 import static com.artemiiik.tsl.Main.random;
 
-public enum Factory implements EmptyFactory{
+public enum FallersFactory implements EmptyFactory{
     BookFactory {
         @Override
         public GameObject create(float posX, float posY) {
@@ -20,7 +20,7 @@ public enum Factory implements EmptyFactory{
         }
     };
 
-    static public Factory getRandomFactory() {
+    static public FallersFactory getRandomFactory() {
         return values()[random.nextInt(values().length)];
     }
 }

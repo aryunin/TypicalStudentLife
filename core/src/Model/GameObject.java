@@ -10,7 +10,7 @@ abstract public class GameObject {
     private Sprite sprite;
     private Polygon bounds;
     private ObjectController controller;
-    private boolean deleted;
+    private boolean toDelete;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
@@ -25,7 +25,7 @@ abstract public class GameObject {
         sprite.setOrigin(width/2,height/2);
         sprite.setRotation(angle);
 
-        deleted = false;
+        toDelete = false;
     }
 
     public void draw(SpriteBatch batch) {
@@ -43,11 +43,11 @@ abstract public class GameObject {
     }
 
     public void delete() {
-        deleted = true;
+        toDelete = true;
     }
 
-    public boolean isDeleted() {
-        return deleted;
+    public boolean toDelete() {
+        return toDelete;
     }
 
     public void move(float offsetX, float offsetY) {

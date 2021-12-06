@@ -1,29 +1,20 @@
 package View;
 
 import Controller.InputHandler;
-import Model.Background;
-import Model.GameObject;
-import Model.Layer;
-import Model.RecordBook;
 import Tools.CollisionChecker;
-import Tools.Factory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.artemiiik.tsl.Main.random;
+import com.badlogic.gdx.utils.Array;
 
 public class GameScreen implements Screen {
     static public TextureAtlas atlas;
     static public float deltaCff;
     private SpriteBatch batch;
-    private Map<String, Layer> layers;
-    private CollisionChecker collision;
+    private Array<Layer> layers;
+    private CollisionChecker collisionChecker;
     private float fallDelay;
     private float fallTimer;
 
@@ -31,39 +22,19 @@ public class GameScreen implements Screen {
         this.atlas = atlas;
     }
 
-    private float getRandomFloat(float min, float max) {
-        return min + random.nextFloat() * (max - min + 1);
-    }
-
-    private void addLayer(String layerName) {
-        layers.put(layerName, new Layer());
-    }
-
-    private void addObject(String layerName, GameObject object) {
-        layers.get(layerName).objects.add(object);
-    }
-
-    private void createFaller() {
-        Factory fallersFactory = Factory.getRandomFactory();
-        float fallerPosX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
-        float fallerPosY = Gdx.graphics.getHeight();
-        addObject("CollisionLayer", fallersFactory.create(fallerPosX, fallerPosY));
-    }
-
     @Override
     public void show() {
         deltaCff = 0;
         batch = new SpriteBatch();
-        layers = new HashMap<>();
-        addLayer("BackgroundLayer");
-        addLayer("ActorsLayer");
-        addLayer("CollisionLayer");
-        collision = new CollisionChecker(layers.get("ActorsLayer").objects, layers.get("CollisionLayer").objects);
         fallDelay = 2f;
         fallTimer = fallDelay;
 
-        addObject("BackgroundLayer", new Background(0, 0));
-        addObject("ActorsLayer", new RecordBook(0, 0));
+        layers = new Array<>();
+        layers.add(new BackgroundLayer());
+        layers.add(new ActorsLayer());
+        layers.add(new FallersLayer());
+
+        collisionChecker = new CollisionChecker(layers.get(1).getArray(),layers.get(2).getArray());
     }
 
     @Override
@@ -72,28 +43,25 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        collision.check();
+        collisionChecker.check();
 
-        for (int i = 0; i < layers.get("CollisionLayer").objects.size; i++) {
-            if (layers.get("CollisionLayer").objects.get(i).isDeleted())
-                layers.get("CollisionLayer").objects.removeIndex(i);
+        for (Layer layer : layers) {
+            for (int i = 0; i < layer.getArray().size; i++) {
+                if (layer.getObject(i).toDelete()) layer.deleteObject(i);
+            }
         }
 
         fallTimer -= delta;
         if(fallTimer <= 0) {
-            createFaller();
+            ((FallersLayer)layers.get(2)).createRandomFaller();
             fallTimer = fallDelay;
         }
 
         InputHandler.handleInput();
-        for(Map.Entry<String,Layer> entry : layers.entrySet()) {
-            entry.getValue().update();
-        }
+        for(Layer layer : layers) layer.update();
 
         batch.begin();
-        for(Map.Entry<String,Layer> entry : layers.entrySet()) {
-            entry.getValue().draw(batch);
-        }
+        for(Layer layer : layers) layer.draw(batch);
         batch.end();
     }
 
