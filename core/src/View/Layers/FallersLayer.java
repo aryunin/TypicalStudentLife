@@ -1,6 +1,7 @@
-package View;
+package View.Layers;
 
 import Tools.FallersFactory;
+import View.Layer;
 import com.badlogic.gdx.Gdx;
 
 import static com.artemiiik.tsl.Main.random;

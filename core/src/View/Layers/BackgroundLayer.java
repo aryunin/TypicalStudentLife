@@ -1,6 +1,8 @@
-package View;
+package View.Layers;
 
-public class BackgroundLayer extends Layer{
+import View.Layer;
+
+public class BackgroundLayer extends Layer {
     public BackgroundLayer() {
         addObject(new Model.Background(0, 0));
     }
