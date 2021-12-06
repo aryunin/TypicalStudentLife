@@ -9,4 +9,9 @@ public class Bottle extends GameObject{
         super(atlas.findRegion("Bottle"), posX, posY, 100f, 100f, 0f);
         setController(new Thrower(this));
     }
+
+    @Override
+    public void intersectWith(GameObject object) {
+
+    }
 }

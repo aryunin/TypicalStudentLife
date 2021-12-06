@@ -17,7 +17,8 @@ public class Thrower extends ObjectController {
 
     @Override
     public void update() {
-        moveDown();
+        if (faller.getBounds().getY() <= 0) faller.delete();
+        else moveDown();
     }
 
     @Override

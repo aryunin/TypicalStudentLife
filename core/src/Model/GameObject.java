@@ -10,6 +10,7 @@ abstract public class GameObject {
     private Sprite sprite;
     private Polygon bounds;
     private ObjectController controller;
+    private boolean deleted;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
@@ -23,6 +24,8 @@ abstract public class GameObject {
         sprite.setSize(width, height);
         sprite.setOrigin(width/2,height/2);
         sprite.setRotation(angle);
+
+        deleted = false;
     }
 
     public void draw(SpriteBatch batch) {
@@ -39,6 +42,14 @@ abstract public class GameObject {
         this.controller = controller;
     }
 
+    public void delete() {
+        deleted = true;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
     public void move(float offsetX, float offsetY) {
         bounds.setPosition(bounds.getX() + offsetX, bounds.getY() + offsetY);
     }
@@ -46,4 +57,6 @@ abstract public class GameObject {
     public void update() {
         if(controller != null) controller.update();
     }
+
+    abstract public void intersectWith(GameObject object);
 }
