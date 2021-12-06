@@ -5,6 +5,7 @@ import Model.Background;
 import Model.GameObject;
 import Model.Layer;
 import Model.RecordBook;
+import Tools.Collision;
 import Tools.Factory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -18,6 +19,7 @@ public class GameScreen implements Screen {
     private SpriteBatch batch;
     private float fallDelay;
     private float fallTimer;
+    private Collision collision; // TODO
     static public TextureAtlas atlas;
     static public float deltaCff;
 
@@ -47,6 +49,7 @@ public class GameScreen implements Screen {
         backgroundLayer = new Layer();
         actorsLayer = new Layer();
         collisionLayer = new Layer();
+        collision = new Collision(actorsLayer.objects, collisionLayer.objects);
         fallDelay = 2f;
         fallTimer = fallDelay;
         backgroundLayer.objects.add(new Background(0, 0));
@@ -58,6 +61,8 @@ public class GameScreen implements Screen {
         deltaCff = delta;
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        collision.check();
 
         fallTimer -= delta;
         if(fallTimer <= 0) {

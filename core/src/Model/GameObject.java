@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Polygon;
 abstract public class GameObject {
     private Sprite sprite;
     private Polygon bounds;
-    protected ObjectController controller;
+    private ObjectController controller;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
@@ -33,6 +33,10 @@ abstract public class GameObject {
 
     public Polygon getBounds() {
         return bounds;
+    }
+
+    public void setController(ObjectController controller) {
+        this.controller = controller;
     }
 
     public void move(float offsetX, float offsetY) {
