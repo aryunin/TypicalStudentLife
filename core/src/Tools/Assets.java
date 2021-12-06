@@ -12,7 +12,7 @@ public class Assets {
         manager.finishLoading();
     }
 
-    static public TextureAtlas getAtlas(String atlasName) {
+    public TextureAtlas getAtlas(String atlasName) {
         return manager.get(atlasName);
     }
 
