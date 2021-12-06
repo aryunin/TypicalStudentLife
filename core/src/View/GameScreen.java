@@ -2,6 +2,7 @@ package View;
 
 import Controller.InputHandler;
 import Model.Background;
+import Model.GameObject;
 import Model.Layer;
 import Model.RecordBook;
 import Tools.CollisionChecker;
@@ -11,6 +12,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.artemiiik.tsl.Main.random;
 
@@ -23,6 +27,7 @@ public class GameScreen implements Screen {
     static public float deltaCff;
 
     /** Layers **/
+    private Map<String, Layer> layers;
     private Layer backgroundLayer;
     private Layer actorsLayer;
     private Layer collisionLayer;
@@ -39,20 +44,21 @@ public class GameScreen implements Screen {
         Factory fallersFactory = Factory.getRandomFactory();
         float fallerPosX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
         float fallerPosY = Gdx.graphics.getHeight();
-        collisionLayer.objects.add(fallersFactory.create(fallerPosX, fallerPosY));
+        layers.get("CollisionLayer").objects.add(fallersFactory.create(fallerPosX, fallerPosY));
     }
 
     @Override
     public void show() {
         batch = new SpriteBatch();
-        backgroundLayer = new Layer();
-        actorsLayer = new Layer();
-        collisionLayer = new Layer();
-        collision = new CollisionChecker(actorsLayer.objects, collisionLayer.objects);
+        layers = new HashMap<>();
+        layers.put("BackgroundLayer", new Layer());
+        layers.put("ActorsLayer", new Layer());
+        layers.put("CollisionLayer", new Layer());
+        collision = new CollisionChecker(layers.get("ActorsLayer").objects, layers.get("CollisionLayer").objects);
         fallDelay = 2f;
         fallTimer = fallDelay;
-        backgroundLayer.objects.add(new Background(0, 0));
-        actorsLayer.objects.add(new RecordBook(0, 0));
+        layers.get("BackgroundLayer").objects.add(new Background(0, 0));
+        layers.get("ActorsLayer").objects.add(new RecordBook(0, 0));
     }
 
     @Override
@@ -63,9 +69,9 @@ public class GameScreen implements Screen {
 
         collision.check();
 
-        for (int i = 0; i < collisionLayer.objects.size; i++) {
-            if (collisionLayer.objects.get(i).isDeleted())
-                collisionLayer.objects.removeIndex(i);
+        for (int i = 0; i < layers.get("CollisionLayer").objects.size; i++) {
+            if (layers.get("CollisionLayer").objects.get(i).isDeleted())
+                layers.get("CollisionLayer").objects.removeIndex(i);
         }
 
         fallTimer -= delta;
@@ -75,14 +81,14 @@ public class GameScreen implements Screen {
         }
 
         InputHandler.handleInput();
-        backgroundLayer.update();
-        actorsLayer.update();
-        collisionLayer.update();
+        for(Map.Entry<String,Layer> entry : layers.entrySet()) {
+            entry.getValue().update();
+        }
 
         batch.begin();
-        backgroundLayer.draw(batch);
-        actorsLayer.draw(batch);
-        collisionLayer.draw(batch);
+        for(Map.Entry<String,Layer> entry : layers.entrySet()) {
+            entry.getValue().draw(batch);
+        }
         batch.end();
     }
 
