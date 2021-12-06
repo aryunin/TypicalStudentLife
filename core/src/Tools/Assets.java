@@ -11,6 +11,7 @@ public class Assets {
         manager.load("GameScreen.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
+    //
 
     public TextureAtlas getAtlas(String atlasName) {
         return manager.get(atlasName);
