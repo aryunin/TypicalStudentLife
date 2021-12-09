@@ -10,7 +10,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameScreen implements Screen {
     static public TextureAtlas atlas;
@@ -20,10 +22,6 @@ public class GameScreen implements Screen {
     private CollisionChecker collisionChecker;
     private float fallDelay;
     private float fallTimer;
-
-    public void setTextureAtlas(TextureAtlas atlas) {
-        this.atlas = atlas;
-    }
 
     @Override
     public void show() {

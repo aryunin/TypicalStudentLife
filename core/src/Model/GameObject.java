@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.ObjectController;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,8 +21,7 @@ abstract public class GameObject {
         bounds.setRotation(angle);
 
         sprite = new Sprite(region);
-        sprite.setPosition(posX, posY);
-        sprite.setSize(width, height);
+        sprite.setPosition(posX, posY);        sprite.setSize(width, height);
         sprite.setOrigin(width/2,height/2);
         sprite.setRotation(angle);
 
@@ -48,10 +48,6 @@ abstract public class GameObject {
 
     public boolean toDelete() {
         return toDelete;
-    }
-
-    public void move(float offsetX, float offsetY) {
-        bounds.setPosition(bounds.getX() + offsetX, bounds.getY() + offsetY);
     }
 
     public void update() {

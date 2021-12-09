@@ -17,8 +17,7 @@ public class Main extends Game {
 		gameScreen = new GameScreen();
 		assets = new Assets();
 		random = new Random();
-		// adding texture atlases to screens
-		((GameScreen)gameScreen).setTextureAtlas(assets.getAtlas("GameScreen.atlas"));
+		GameScreen.atlas = assets.getAtlas("GameScreen.atlas");
 		setScreen(gameScreen);
 	}
 	

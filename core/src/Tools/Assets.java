@@ -4,14 +4,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Assets {
-    static private AssetManager manager;
+    private AssetManager manager;
 
     public Assets() {
         manager = new AssetManager();
         manager.load("GameScreen.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
-    //
 
     public TextureAtlas getAtlas(String atlasName) {
         return manager.get(atlasName);

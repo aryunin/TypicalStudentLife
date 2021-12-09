@@ -25,17 +25,21 @@ abstract public class ObjectController {
         }
     }
 
+    public void move(float offsetX, float offsetY) {
+        reciever.getBounds().setPosition(reciever.getBounds().getX() + offsetX, reciever.getBounds().getY() + offsetY);
+    }
+
     public void moveUp() {
-        reciever.move(0,speed*deltaCff);
+        move(0,speed*deltaCff);
     }
     public void moveDown() {
-        reciever.move(0,-speed*deltaCff);
+        move(0,-speed*deltaCff);
     }
     public void moveLeft() {
-        reciever.move(-speed*deltaCff,0);
+        move(-speed*deltaCff,0);
     }
     public void moveRight() {
-        reciever.move(speed*deltaCff,0);
+        move(speed*deltaCff,0);
     }
 
     abstract public void update();
