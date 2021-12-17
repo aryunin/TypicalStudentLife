@@ -3,8 +3,8 @@ package Controller.ObjectControllers;
 import Model.GameObjects.GameObject;
 import com.badlogic.gdx.Gdx;
 
-public class Thrower extends ObjectController {
-    public Thrower(GameObject reciever) {
+public class FallerController extends ObjectController {
+    public FallerController(GameObject reciever) {
         super(reciever);
         setSpeed(Gdx.graphics.getHeight()/2f);
     }

@@ -13,16 +13,16 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MenuScreen implements Screen {
-    private Camera camera;
     private Background background;
+    private Camera camera;
     private Viewport viewport;
     private SpriteBatch batch;
     private UI ui;
 
     @Override
     public void show() {
-        camera = new OrthographicCamera();
         background = new Background(0,0);
+        camera = new OrthographicCamera();
         float bgWidth = background.getBounds().getVertices()[2];
         float bgHeight = background.getBounds().getVertices()[7];
         viewport = new FitViewport(bgWidth,bgHeight,camera);
