@@ -17,16 +17,11 @@ import com.badlogic.gdx.utils.Array;
 public class GameScreen implements Screen {
     static public TextureAtlas atlas;
     static public float deltaCff;
-    private Game main;
     private SpriteBatch batch;
     private Array<GameObjectsLayer> layers;
     private CollisionChecker collisionChecker;
     private float fallDelay;
     private float fallTimer;
-
-    public GameScreen(Game main) {
-        this.main = main;
-    }
 
     @Override
     public void show() {

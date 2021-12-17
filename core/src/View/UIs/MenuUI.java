@@ -1,5 +1,6 @@
 package View.UIs;
 
+import Tools.ScreenManager;
 import View.Screens.GameScreen;
 import View.Screens.MenuScreen;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +28,7 @@ public class MenuUI extends UI {
         playButton.addListener(new InputListener() {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                menu.getMain().setScreen(new GameScreen(menu.getMain()));
+                ScreenManager.setScreen(new GameScreen());
                 return true;
             }
         });

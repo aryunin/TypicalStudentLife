@@ -11,18 +11,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class MenuScreen implements Screen {
     static public TextureAtlas atlas;
-    private Game main;
     private SpriteBatch batch;
     private MenuUI ui;
     private Background background;
-
-    public MenuScreen(Game main) {
-        this.main = main;
-    }
-
-    public Game getMain() {
-        return main;
-    }
 
     @Override
     public void show() {
