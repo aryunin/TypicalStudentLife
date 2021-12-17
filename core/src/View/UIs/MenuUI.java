@@ -12,12 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class MenuUI extends UI {
-    private MenuScreen menu;
     private Button playButton;
 
-    public MenuUI(MenuScreen callingScreen) {
+    public MenuUI() {
         super(new ScreenViewport(), new Skin(Gdx.files.internal("glassy-ui.json")));
-        this.menu = callingScreen;
         playButton = new TextButton("Play",skin,"default");
         float playButtonWidth = 200;
         float playButtonHeight = 100;

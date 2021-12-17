@@ -54,6 +54,5 @@ abstract public class GameObject {
     }
 
     public void intersectWith(GameObject object) {
-
     }
 }
