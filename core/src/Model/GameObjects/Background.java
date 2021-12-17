@@ -1,10 +1,10 @@
 package Model.GameObjects;
 
-import static View.Screens.GameScreen.atlas;
+import Tools.Assets;
 
 public class Background extends GameObject{
     public Background(float posX, float posY) {
-        super(atlas.findRegion("BG"), posX, posY, 1417, 945, 0);
+        super(Assets.getAtlas("GameScreen.atlas").findRegion("BG"), posX, posY, 1417, 945, 0);
     }
 
     @Override

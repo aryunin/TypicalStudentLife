@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class MenuScreen implements Screen {
-    static public TextureAtlas atlas;
     private SpriteBatch batch;
     private MenuUI ui;
     private Background background;

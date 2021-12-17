@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 
 public class GameScreen implements Screen {
-    static public TextureAtlas atlas;
     static public float deltaCff;
     private SpriteBatch batch;
     private Array<GameObjectsLayer> layers;

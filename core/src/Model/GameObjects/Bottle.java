@@ -1,12 +1,11 @@
 package Model.GameObjects;
 
 import Controller.ObjectControllers.Thrower;
-
-import static View.Screens.GameScreen.atlas;
+import Tools.Assets;
 
 public class Bottle extends GameObject{
     public Bottle(float posX, float posY) {
-        super(atlas.findRegion("Bottle"), posX, posY, 100f, 100f, 0f);
+        super(Assets.getAtlas("GameScreen.atlas").findRegion("Bottle"), posX, posY, 100f, 100f, 0f);
         setController(new Thrower(this));
     }
 

@@ -15,8 +15,6 @@ public class Main extends Game {
 	public void create () {
 		Assets.load();
 		ScreenManager.main = this;
-		GameScreen.atlas = Assets.getAtlas("GameScreen.atlas");
-		MenuScreen.atlas = Assets.getAtlas("GameScreen.atlas");
 		ScreenManager.setScreen(new MenuScreen());
 	}
 	
