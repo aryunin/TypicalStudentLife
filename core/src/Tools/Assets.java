@@ -4,19 +4,18 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Assets {
-    private AssetManager manager;
+    static private AssetManager manager = new AssetManager();
 
-    public Assets() {
-        manager = new AssetManager();
+    static public void load() {
         manager.load("GameScreen.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
 
-    public TextureAtlas getAtlas(String atlasName) {
+    static public TextureAtlas getAtlas(String atlasName) {
         return manager.get(atlasName);
     }
 
-    public void dispose() {
+    static public void dispose() {
         manager.dispose();
     }
 }
