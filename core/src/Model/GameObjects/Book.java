@@ -1,8 +1,8 @@
-package Model;
+package Model.GameObjects;
 
 import Controller.ObjectControllers.Thrower;
 
-import static View.GameScreen.atlas;
+import static View.Screens.GameScreen.atlas;
 
 public class Book extends GameObject{
     public Book(float posX, float posY) {

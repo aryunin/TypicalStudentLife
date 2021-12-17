@@ -1,6 +1,6 @@
 package Tools;
 
-import Model.GameObject;
+import Model.GameObjects.GameObject;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.FloatArray;

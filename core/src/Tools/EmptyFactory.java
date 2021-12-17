@@ -1,6 +1,6 @@
 package Tools;
 
-import Model.GameObject;
+import Model.GameObjects.GameObject;
 
 public interface EmptyFactory {
     GameObject create(float posX, float posY);

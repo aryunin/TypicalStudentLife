@@ -1,6 +1,6 @@
-package Model;
+package Model.GameObjects;
 
-import static View.GameScreen.atlas;
+import static View.Screens.GameScreen.atlas;
 
 public class Background extends GameObject{
     public Background(float posX, float posY) {

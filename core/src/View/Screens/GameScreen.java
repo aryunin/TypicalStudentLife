@@ -1,27 +1,32 @@
-package View;
+package View.Screens;
 
 import Controller.InputHandler;
 import Tools.CollisionChecker;
-import View.Layers.ActorsLayer;
-import View.Layers.BackgroundLayer;
-import View.Layers.FallersLayer;
+import View.GameObjectsLayers.GameObjectsLayer;
+import View.GameObjectsLayers.RBLayer;
+import View.GameObjectsLayers.BackgroundLayer;
+import View.GameObjectsLayers.FallersLayer;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameScreen implements Screen {
     static public TextureAtlas atlas;
     static public float deltaCff;
+    private Game main;
     private SpriteBatch batch;
-    private Array<Layer> layers;
+    private Array<GameObjectsLayer> layers;
     private CollisionChecker collisionChecker;
     private float fallDelay;
     private float fallTimer;
+
+    public GameScreen(Game main) {
+        this.main = main;
+    }
 
     @Override
     public void show() {
@@ -32,10 +37,10 @@ public class GameScreen implements Screen {
 
         layers = new Array<>();
         layers.add(new BackgroundLayer());
-        layers.add(new ActorsLayer());
+        layers.add(new RBLayer());
         layers.add(new FallersLayer());
 
-        collisionChecker = new CollisionChecker(layers.get(1).getArray(),layers.get(2).getArray());
+        collisionChecker = new CollisionChecker(layers.get(1).objects,layers.get(2).objects);
     }
 
     @Override
@@ -46,9 +51,9 @@ public class GameScreen implements Screen {
 
         collisionChecker.check();
 
-        for (Layer layer : layers) {
-            for (int i = 0; i < layer.getArray().size; i++) {
-                if (layer.getObject(i).toDelete()) layer.deleteObject(i);
+        for (GameObjectsLayer layer : layers) {
+            for (int i = 0; i < layer.objects.size; i++) {
+                if (layer.objects.get(i).toDelete()) layer.objects.removeIndex(i);
             }
         }
 
@@ -59,10 +64,10 @@ public class GameScreen implements Screen {
         }
 
         InputHandler.handleInput();
-        for(Layer layer : layers) layer.update();
+        for(GameObjectsLayer layer : layers) layer.update();
 
         batch.begin();
-        for(Layer layer : layers) layer.draw(batch);
+        for(GameObjectsLayer layer : layers) layer.draw(batch);
         batch.end();
     }
 

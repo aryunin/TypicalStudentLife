@@ -1,8 +1,8 @@
 package Tools;
 
-import Model.Book;
-import Model.Bottle;
-import Model.GameObject;
+import Model.GameObjects.Book;
+import Model.GameObjects.Bottle;
+import Model.GameObjects.GameObject;
 
 import static com.artemiiik.tsl.Main.random;
 

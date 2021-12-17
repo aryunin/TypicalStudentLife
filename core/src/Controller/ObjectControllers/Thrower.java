@@ -1,10 +1,7 @@
 package Controller.ObjectControllers;
 
-import Controller.ObjectController;
-import Model.GameObject;
+import Model.GameObjects.GameObject;
 import com.badlogic.gdx.Gdx;
-
-import static View.GameScreen.deltaCff;
 
 public class Thrower extends ObjectController {
     public Thrower(GameObject reciever) {

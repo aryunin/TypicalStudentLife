@@ -1,7 +1,6 @@
 package Controller.ObjectControllers;
 
-import Controller.ObjectController;
-import Model.RecordBook;
+import Model.GameObjects.RecordBook;
 import com.badlogic.gdx.Gdx;
 
 public class RBController extends ObjectController {

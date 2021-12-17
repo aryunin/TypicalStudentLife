@@ -1,8 +1,10 @@
-package Controller;
+package Controller.ObjectControllers;
 
-import Model.GameObject;
+import Controller.Commands.Command;
+import Controller.InputHandler;
+import Model.GameObjects.GameObject;
 
-import static View.GameScreen.deltaCff;
+import static View.Screens.GameScreen.deltaCff;
 
 abstract public class ObjectController {
     private Command command;
@@ -19,7 +21,7 @@ abstract public class ObjectController {
     }
 
     public void handleCommand() {
-        command = InputHandler.getCurrentCommand();
+        command = InputHandler.command;
         if (command != null) {
             command.execute(this);
         }

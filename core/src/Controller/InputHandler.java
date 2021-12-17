@@ -1,14 +1,11 @@
 package Controller;
 
-import Controller.Commands.MoveDownCommand;
-import Controller.Commands.MoveLeftCommand;
-import Controller.Commands.MoveRightCommand;
-import Controller.Commands.MoveUpCommand;
+import Controller.Commands.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 public class InputHandler {
-    static private Command command;
+    static public Command command;
 
     static public void handleInput() {
         command = null;
@@ -17,9 +14,5 @@ public class InputHandler {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) command = new MoveLeftCommand();
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) command = new MoveUpCommand();
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) command = new MoveDownCommand();
-    }
-
-    static public Command getCurrentCommand() {
-        return command;
     }
 }

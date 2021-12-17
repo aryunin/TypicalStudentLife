@@ -1,8 +1,8 @@
-package Model;
+package Model.GameObjects;
 
 import Controller.ObjectControllers.RBController;
 
-import static View.GameScreen.atlas;
+import static View.Screens.GameScreen.atlas;
 
 public class RecordBook extends GameObject{
     public RecordBook(float posX, float posY) {

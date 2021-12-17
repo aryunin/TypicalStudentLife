@@ -1,7 +1,6 @@
 package Controller.Commands;
 
-import Controller.Command;
-import Controller.ObjectController;
+import Controller.ObjectControllers.ObjectController;
 
 public class MoveRightCommand implements Command {
     @Override

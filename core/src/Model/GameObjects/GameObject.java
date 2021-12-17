@@ -1,7 +1,6 @@
-package Model;
+package Model.GameObjects;
 
-import Controller.ObjectController;
-import com.badlogic.gdx.graphics.Texture;
+import Controller.ObjectControllers.ObjectController;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -54,5 +53,7 @@ abstract public class GameObject {
         if(controller != null) controller.update();
     }
 
-    abstract public void intersectWith(GameObject object);
+    public void intersectWith(GameObject object) {
+
+    }
 }
