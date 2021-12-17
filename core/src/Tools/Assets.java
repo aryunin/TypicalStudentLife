@@ -8,6 +8,7 @@ public class Assets {
 
     static public void load() {
         manager.load("GameScreen.atlas", TextureAtlas.class);
+        manager.load("Background.atlas", TextureAtlas.class);
         manager.finishLoading();
     }
 

@@ -4,7 +4,7 @@ import Tools.Assets;
 
 public class Background extends GameObject{
     public Background(float posX, float posY) {
-        super(Assets.getAtlas("GameScreen.atlas").findRegion("BG"), posX, posY, 1417, 945, 0);
+        super(Assets.getAtlas("Background.atlas").findRegion("background"), posX, posY, 1024, 768, 0);
     }
 
     @Override
