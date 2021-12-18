@@ -6,8 +6,8 @@ import Model.GameObjects.GameObject;
 import Model.GameObjects.RecordBook;
 import Tools.CollisionChecker;
 import Tools.FallersFactory;
-import View.UIs.GameUI;
-import View.UIs.UI;
+import View.GUI.GameGUI;
+import View.GUI.GUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -25,7 +25,7 @@ public class GameScreen implements Screen {
     private Camera camera;
     private Viewport viewport;
     private SpriteBatch batch;
-    private UI ui;
+    private GUI gui;
     private RecordBook recordBook;
     private Array<GameObject> fallers;
     private float fallDelay;
@@ -79,7 +79,7 @@ public class GameScreen implements Screen {
         float bgHeight = background.getBounds().getVertices()[7];
         viewport = new FitViewport(bgWidth,bgHeight,camera);
         batch = new SpriteBatch();
-        ui = new GameUI(viewport);
+        gui = new GameGUI(viewport);
         recordBook = new RecordBook(0,0);
         fallers = new Array<>();
         fallDelay = 2f;
@@ -125,7 +125,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        ui.dispose();
+        gui.dispose();
         batch.dispose();
     }
 }

@@ -1,6 +1,5 @@
 package Tools;
 
-import View.Screens.GameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 

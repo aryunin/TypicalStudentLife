@@ -1,8 +1,8 @@
 package View.Screens;
 
 import Model.GameObjects.Background;
-import View.UIs.MenuUI;
-import View.UIs.UI;
+import View.GUI.MenuGUI;
+import View.GUI.GUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -17,7 +17,7 @@ public class MenuScreen implements Screen {
     private Camera camera;
     private Viewport viewport;
     private SpriteBatch batch;
-    private UI ui;
+    private GUI gui;
 
     @Override
     public void show() {
@@ -27,7 +27,7 @@ public class MenuScreen implements Screen {
         float bgHeight = background.getBounds().getVertices()[7];
         viewport = new FitViewport(bgWidth,bgHeight,camera);
         batch = new SpriteBatch();
-        ui = new MenuUI(viewport);
+        gui = new MenuGUI(viewport);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class MenuScreen implements Screen {
         background.draw(batch);
         batch.end();
 
-        ui.update();
-        ui.draw();
+        gui.update();
+        gui.draw();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        ui.dispose();
+        gui.dispose();
         batch.dispose();
     }
 }
