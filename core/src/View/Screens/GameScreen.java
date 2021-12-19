@@ -1,6 +1,7 @@
 package View.Screens;
 
 import Controller.InputHandler;
+import Model.GUI.Counter;
 import Model.GameObjects.Background;
 import Model.GameObjects.GameObject;
 import Model.GameObjects.RecordBook;
@@ -26,11 +27,12 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private SpriteBatch batch;
     private GUI gui;
+    private Counter score;
     private RecordBook recordBook;
     private Array<GameObject> fallers;
     private float fallDelay;
     private float fallTimer;
-
+    private float accelerator;
     static public float deltaCff = 0;
 
     private float getRandomFloat(float min, float max) {
@@ -71,6 +73,11 @@ public class GameScreen implements Screen {
         }
     }
 
+    public void addScore(int value) {
+        score.add(value);
+        accelerator--;
+    }
+
     @Override
     public void show() {
         background = new Background(0,0);
@@ -80,10 +87,12 @@ public class GameScreen implements Screen {
         viewport = new FitViewport(bgWidth,bgHeight,camera);
         batch = new SpriteBatch();
         gui = new GameGUI(viewport);
-        recordBook = new RecordBook(0,0);
+        score = ((GameGUI)gui).counter;
+        recordBook = new RecordBook(0,0, this);
         fallers = new Array<>();
         fallDelay = 2f;
         fallTimer = fallDelay;
+        accelerator = 5;
     }
 
     @Override
@@ -93,11 +102,19 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         deleteGarbage();
+
+        if(accelerator == 0) {
+            fallDelay -= 0.2f;
+            accelerator = 5;
+        }
         createFallers();
 
         InputHandler.handleInput();
         updateObjects();
         drawObjects();
+
+        gui.update();
+        gui.draw();
 
         CollisionChecker.check(recordBook, fallers);
     }

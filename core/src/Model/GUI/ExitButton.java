@@ -1,5 +1,7 @@
 package Model.GUI;
 
+import Tools.ScreenManager;
+import View.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,10 +20,14 @@ public class ExitButton extends TextButton {
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 setChecked(true);
             }
-
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 setChecked(false);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+                return true;
             }
         });
     }
@@ -35,14 +41,14 @@ public class ExitButton extends TextButton {
     }
 
     public ExitButton(float posX, float posY) {
-        super("Play", new Skin(Gdx.files.internal("GUI.json")), "button");
+        super("Exit", new Skin(Gdx.files.internal("GUI.json")), "button");
         scale(1f);
         setPosition(posX, posY);
         handleInput();
     }
 
     public ExitButton(float posX, float posY, float scaling) {
-        super("Play", new Skin(Gdx.files.internal("GUI.json")), "button");
+        super("Exit", new Skin(Gdx.files.internal("GUI.json")), "button");
         scale(scaling);
         setPosition(posX, posY);
         handleInput();

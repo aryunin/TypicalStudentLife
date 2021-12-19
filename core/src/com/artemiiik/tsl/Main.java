@@ -2,7 +2,6 @@ package com.artemiiik.tsl;
 
 import Tools.Assets;
 import Tools.ScreenManager;
-import View.Screens.GameScreen;
 import View.Screens.MenuScreen;
 import com.badlogic.gdx.Game;
 
@@ -24,3 +23,4 @@ public class Main extends Game {
 		Assets.dispose();
 	}
 }
+// TODO: везде использовать размеры вьюпорта вместо размеров экрана

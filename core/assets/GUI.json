@@ -27,6 +27,10 @@
     "button": {
       "font": "default-font",
       "fontColor": "white"
+    },
+    "counter": {
+      "font": "default-font",
+      "fontColor": "white"
     }
   }
 }
