@@ -1,20 +1,18 @@
 package View.Screens;
 
 import Controller.InputHandler;
-import Model.GUI.Counter;
-import Model.GameObjects.Background;
-import Model.GameObjects.GameObject;
-import Model.GameObjects.RecordBook;
-import Tools.CollisionChecker;
+import Model.GameObjects.*;
+import Tools.Collision;
 import Tools.FallersFactory;
+import Tools.ScreenManager;
 import View.GUI.GameGUI;
-import View.GUI.GUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -22,18 +20,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import static com.artemiiik.tsl.Main.random;
 
 public class GameScreen implements Screen {
+    static public final int worldWidth = 1024;
+    static public final int worldHeight = 768;
+    static public float deltaCff = 0;
     private Background background;
     private Camera camera;
     private Viewport viewport;
     private SpriteBatch batch;
-    private GUI gui;
-    private Counter score;
+    private GameGUI gui;
     private RecordBook recordBook;
     private Array<GameObject> fallers;
     private float fallDelay;
     private float fallTimer;
-    private float accelerator;
-    static public float deltaCff = 0;
 
     private float getRandomFloat(float min, float max) {
         return min + random.nextFloat() * (max - min + 1);
@@ -56,43 +54,50 @@ public class GameScreen implements Screen {
         batch.end();
     }
 
-    private void deleteGarbage() {
-        for (int i = 0; i < fallers.size; i++) {
-            if (fallers.get(i).isDeleted()) fallers.removeIndex(i);
-        }
-    }
-
     private void createFallers() {
         fallTimer -= deltaCff;
         if(fallTimer <= 0) {
             FallersFactory fallersFactory = FallersFactory.getRandomFactory();
-            float posX = getRandomFloat(100f, Gdx.graphics.getWidth()-200f);
+            float posX = getRandomFloat(50f, worldWidth-50f);
             float posY = Gdx.graphics.getHeight();
             fallers.add(fallersFactory.create(posX,posY));
             fallTimer = fallDelay;
         }
     }
 
-    public void addScore(int value) {
-        score.add(value);
-        accelerator--;
+    private void checkCollision() {
+        int index = Collision.check(recordBook, fallers);
+        GameObject collisionObject;
+
+        if (index != -1) {
+            collisionObject = fallers.get(index);
+            if(collisionObject.getClass() == Book.class) {
+                gui.score.add(1);
+                fallers.removeIndex(index);
+            }
+            if(collisionObject.getClass() == Bottle.class) {
+                gui.mark.add(-1);
+                fallers.removeIndex(index);
+            }
+        }
+
+        for (int i = 0; i < fallers.size; i++) {
+            if(fallers.get(i).getBounds().getY() < 0)
+                fallers.removeIndex(i);
+        }
     }
 
     @Override
     public void show() {
         background = new Background(0,0);
         camera = new OrthographicCamera();
-        float bgWidth = background.getBounds().getVertices()[2];
-        float bgHeight = background.getBounds().getVertices()[7];
-        viewport = new FitViewport(bgWidth,bgHeight,camera);
+        viewport = new FitViewport(worldWidth,worldHeight,camera);
         batch = new SpriteBatch();
         gui = new GameGUI(viewport);
-        score = ((GameGUI)gui).counter;
-        recordBook = new RecordBook(0,0, this);
+        recordBook = new RecordBook(0,0);
         fallers = new Array<>();
         fallDelay = 2f;
         fallTimer = fallDelay;
-        accelerator = 5;
     }
 
     @Override
@@ -101,22 +106,20 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        deleteGarbage();
-
-        if(accelerator == 0) {
-            fallDelay -= 0.2f;
-            accelerator = 5;
-        }
         createFallers();
 
         InputHandler.handleInput();
         updateObjects();
-        drawObjects();
-
         gui.update();
+        checkCollision();
+
+        batch.setProjectionMatrix(camera.combined);
+        drawObjects();
         gui.draw();
 
-        CollisionChecker.check(recordBook, fallers);
+        if(gui.mark.getCount() <= 2) {
+            ScreenManager.setScreen(new EndScreen(gui.score.getCount()));
+        }
     }
 
     @Override

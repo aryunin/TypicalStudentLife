@@ -1,6 +1,7 @@
 package Tools;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class Assets {
@@ -8,7 +9,7 @@ public class Assets {
 
     static public void load() {
         manager.load("GameScreen.atlas", TextureAtlas.class);
-        manager.load("Background.atlas", TextureAtlas.class);
+        manager.load("background.jpg", Texture.class);
         manager.finishLoading();
     }
 
@@ -16,7 +17,7 @@ public class Assets {
         return manager.get(atlasName);
     }
 
-    static public void dispose() {
-        manager.dispose();
+    static public Texture getTexture(String textureName) {
+        return manager.get(textureName);
     }
 }

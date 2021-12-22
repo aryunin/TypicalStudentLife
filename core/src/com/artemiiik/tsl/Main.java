@@ -16,11 +16,5 @@ public class Main extends Game {
 		ScreenManager.main = this;
 		ScreenManager.setScreen(new MenuScreen());
 	}
-	
-	@Override
-	public void dispose () {
-		ScreenManager.dispose();
-		Assets.dispose();
-	}
 }
-// TODO: везде использовать размеры вьюпорта вместо размеров экрана
+// TODO: типы позиций не float

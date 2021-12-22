@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class Counter extends Label {
+public class Counter extends Label implements Cloneable{
     final static private float defaultFontScaling = 1f;
     private long count;
 
@@ -20,7 +20,7 @@ public class Counter extends Label {
     }
 
     public Counter(int defaultCount, float posX, float posY, float scaling) {
-        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "button");
+        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "counter");
         count = defaultCount;
         scale(scaling);
         setPosition(posX, posY);
@@ -29,5 +29,9 @@ public class Counter extends Label {
     public void add(int value) {
         count += value;
         setText(String.valueOf(count));
+    }
+
+    public long getCount() {
+        return count;
     }
 }

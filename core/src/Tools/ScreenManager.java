@@ -13,8 +13,4 @@ public class ScreenManager {
         currentScreen = newScreen;
         main.setScreen(currentScreen);
     }
-
-    static public void dispose() {
-        currentScreen.dispose();
-    }
 }

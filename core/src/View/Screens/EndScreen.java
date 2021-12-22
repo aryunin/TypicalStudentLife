@@ -1,8 +1,7 @@
 package View.Screens;
 
 import Model.GameObjects.Background;
-import View.GUI.MenuGUI;
-import View.GUI.GUI;
+import View.GUI.EndGUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -12,22 +11,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class MenuScreen implements Screen {
+public class EndScreen implements Screen {
     static public final int worldWidth = 1024;
     static public final int worldHeight = 768;
     private Background background;
     private Camera camera;
     private Viewport viewport;
     private SpriteBatch batch;
-    private MenuGUI gui;
+    private EndGUI gui;
+
+    public EndScreen(long score) {
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(worldWidth, worldHeight, camera);
+        gui = new EndGUI(viewport, score);
+    }
 
     @Override
     public void show() {
         background = new Background(0,0);
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(worldWidth,worldHeight, camera);
         batch = new SpriteBatch();
-        gui = new MenuGUI(viewport);
     }
 
     @Override

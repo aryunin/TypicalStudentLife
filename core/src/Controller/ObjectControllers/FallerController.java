@@ -1,17 +1,16 @@
 package Controller.ObjectControllers;
 
 import Model.GameObjects.GameObject;
-import com.badlogic.gdx.Gdx;
+import View.Screens.GameScreen;
 
 public class FallerController extends ObjectController {
     public FallerController(GameObject reciever) {
         super(reciever);
-        setSpeed(Gdx.graphics.getHeight()/2f);
+        setSpeed(GameScreen.worldHeight/2f);
     }
 
     @Override
     public void update() {
-        if (reciever.getBounds().getY() <= 0) reciever.delete();
-        else moveDown();
+        moveDown();
     }
 }
