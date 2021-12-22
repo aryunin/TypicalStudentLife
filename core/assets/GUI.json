@@ -24,11 +24,7 @@
   },
 
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
-    "button": {
-      "font": "default-font",
-      "fontColor": "white"
-    },
-    "counter": {
+    "label": {
       "font": "default-font",
       "fontColor": "white"
     }

@@ -2,7 +2,6 @@ package Controller.ObjectControllers;
 
 import Model.GameObjects.RecordBook;
 import View.Screens.GameScreen;
-import com.badlogic.gdx.Gdx;
 
 public class RBController extends ObjectController {
     public RBController(RecordBook recordBook) {
@@ -18,9 +17,9 @@ public class RBController extends ObjectController {
         float posY = reciever.getBounds().getY();
         float[] bounds = reciever.getBounds().getVertices();
 
-        if(posX < 0) move(-posX,0);
-        if(posX + bounds[2] > GameScreen.worldWidth) move(GameScreen.worldWidth-bounds[2]-posX,0);
-        if(posY < 0) move(0,-posY);
-        if(posY + bounds[6] > 100f) move(0,100f-bounds[6]-posY);
+        if(posX < 0) move(-posX,0f);
+        if(posX + bounds[2] > GameScreen.worldWidth) move(GameScreen.worldWidth-bounds[2]-posX,0f);
+        if(posY < 0) move(0f,-posY);
+        if(posY + bounds[6] > 100f) move(0f,100f-bounds[6]-posY);
     }
 }

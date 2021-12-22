@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class EndScreen implements Screen {
-    static public final int worldWidth = 1024;
-    static public final int worldHeight = 768;
+    static public final float worldWidth = 1024;
+    static public final float worldHeight = 768;
     private Background background;
     private Camera camera;
     private Viewport viewport;
@@ -28,7 +28,7 @@ public class EndScreen implements Screen {
 
     @Override
     public void show() {
-        background = new Background(0,0);
+        background = new Background(0f,0f);
         batch = new SpriteBatch();
     }
 
@@ -37,12 +37,12 @@ public class EndScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        camera.update();
+        gui.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         background.draw(batch);
         batch.end();
-
-        gui.update();
         gui.draw();
     }
 

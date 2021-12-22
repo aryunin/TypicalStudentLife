@@ -1,6 +1,7 @@
 package Model.GameObjects;
 
 import Controller.ObjectControllers.ObjectController;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,13 +16,16 @@ abstract public class GameObject {
         bounds = new Polygon();
         bounds.setVertices(new float[]{0f, 0f, width, 0f, width, height, 0f, height});
         bounds.setPosition(posX, posY);
-        bounds.setOrigin(width/2,height/2);
+        bounds.setOrigin(width/2f,height/2f);
         bounds.setRotation(angle);
 
         sprite = new Sprite(region);
-        sprite.setPosition(posX, posY);        sprite.setSize(width, height);
-        sprite.setOrigin(width/2,height/2);
+        sprite.setPosition(posX, posY);
+        sprite.setSize(width, height);
+        sprite.setOrigin(width/2f,height/2f);
         sprite.setRotation(angle);
+
+        sprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     public void draw(SpriteBatch batch) {

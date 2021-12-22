@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -20,8 +19,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import static com.artemiiik.tsl.Main.random;
 
 public class GameScreen implements Screen {
-    static public final int worldWidth = 1024;
-    static public final int worldHeight = 768;
+    static public final float worldWidth = 1024f;
+    static public final float worldHeight = 768f;
     static public float deltaCff = 0;
     private Background background;
     private Camera camera;
@@ -58,8 +57,8 @@ public class GameScreen implements Screen {
         fallTimer -= deltaCff;
         if(fallTimer <= 0) {
             FallersFactory fallersFactory = FallersFactory.getRandomFactory();
-            float posX = getRandomFloat(50f, worldWidth-50f);
-            float posY = Gdx.graphics.getHeight();
+            float posX = getRandomFloat(0f, worldWidth-100f);
+            float posY = worldHeight;
             fallers.add(fallersFactory.create(posX,posY));
             fallTimer = fallDelay;
         }
@@ -82,19 +81,19 @@ public class GameScreen implements Screen {
         }
 
         for (int i = 0; i < fallers.size; i++) {
-            if(fallers.get(i).getBounds().getY() < 0)
+            if(fallers.get(i).getBounds().getY() < -100f)
                 fallers.removeIndex(i);
         }
     }
 
     @Override
     public void show() {
-        background = new Background(0,0);
+        background = new Background(0f,0f);
         camera = new OrthographicCamera();
         viewport = new FitViewport(worldWidth,worldHeight,camera);
         batch = new SpriteBatch();
         gui = new GameGUI(viewport);
-        recordBook = new RecordBook(0,0);
+        recordBook = new RecordBook(0f,0f);
         fallers = new Array<>();
         fallDelay = 2f;
         fallTimer = fallDelay;
@@ -109,17 +108,17 @@ public class GameScreen implements Screen {
         createFallers();
 
         InputHandler.handleInput();
+
         updateObjects();
         gui.update();
         checkCollision();
 
+        camera.update();
         batch.setProjectionMatrix(camera.combined);
         drawObjects();
         gui.draw();
 
-        if(gui.mark.getCount() <= 2) {
-            ScreenManager.setScreen(new EndScreen(gui.score.getCount()));
-        }
+        if(gui.mark.getCount() <= 2) ScreenManager.setScreen(new EndScreen(gui.score.getCount()));
     }
 
     @Override

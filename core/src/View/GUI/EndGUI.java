@@ -1,8 +1,3 @@
-/*
- * Created by aryunin on 2021.12.22
- * TypicalStudentLife
- */
-
 package View.GUI;
 
 import com.badlogic.gdx.Gdx;
@@ -16,8 +11,8 @@ public class EndGUI extends GUI{
 
     public EndGUI(Viewport viewport, long score) {
         super(viewport);
-        Label scoreLabel = new Label(String.valueOf(score), new Skin(Gdx.files.internal("GUI.json")), "counter");
-        scoreLabel.setPosition(100, 100);
+        Label scoreLabel = new Label(String.valueOf(score), new Skin(Gdx.files.internal("GUI.json")), "label");
+        scoreLabel.setPosition(100f, 100f);
         scoreLabel.setFontScale(0.8f);
         stage.addActor(scoreLabel);
         menuGUI = new MenuGUI(viewport);

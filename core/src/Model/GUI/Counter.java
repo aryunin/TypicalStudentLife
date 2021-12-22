@@ -13,14 +13,14 @@ public class Counter extends Label implements Cloneable{
     }
 
     public Counter(int defaultCount, float posX, float posY) {
-        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "counter");
+        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "label");
         count = defaultCount;
         scale(1f);
         setPosition(posX, posY);
     }
 
     public Counter(int defaultCount, float posX, float posY, float scaling) {
-        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "counter");
+        super(String.valueOf(defaultCount), new Skin(Gdx.files.internal("GUI.json")), "label");
         count = defaultCount;
         scale(scaling);
         setPosition(posX, posY);

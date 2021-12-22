@@ -32,16 +32,16 @@ abstract public class ObjectController {
     }
 
     public void moveUp() {
-        move(0,speed*deltaCff);
+        move(0f,speed*deltaCff);
     }
     public void moveDown() {
-        move(0,-speed*deltaCff);
+        move(0f,-speed*deltaCff);
     }
     public void moveLeft() {
-        move(-speed*deltaCff,0);
+        move(-speed*deltaCff,0f);
     }
     public void moveRight() {
-        move(speed*deltaCff,0);
+        move(speed*deltaCff,0f);
     }
 
     abstract public void update();

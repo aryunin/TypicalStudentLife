@@ -16,5 +16,11 @@ public class Main extends Game {
 		ScreenManager.main = this;
 		ScreenManager.setScreen(new MenuScreen());
 	}
+
+	@Override
+	public void dispose() {
+		Assets.dispose();
+		super.dispose();
+	}
 }
 // TODO: типы позиций не float

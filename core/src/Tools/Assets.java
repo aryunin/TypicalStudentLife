@@ -20,4 +20,8 @@ public class Assets {
     static public Texture getTexture(String textureName) {
         return manager.get(textureName);
     }
+
+    static public void dispose() {
+        manager.dispose();
+    }
 }
