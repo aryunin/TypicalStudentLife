@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import static com.artemiiik.tsl.Main.random;
+import static com.artemiiik.tsl.TSL.random;
 
 public class GameScreen implements Screen {
     static public final float worldWidth = 1024f;
@@ -58,8 +58,7 @@ public class GameScreen implements Screen {
         if(fallTimer <= 0) {
             FallersFactory fallersFactory = FallersFactory.getRandomFactory();
             float posX = getRandomFloat(0f, worldWidth-100f);
-            float posY = worldHeight;
-            fallers.add(fallersFactory.create(posX,posY));
+            fallers.add(fallersFactory.create(posX,worldHeight));
             fallTimer = fallDelay;
         }
     }

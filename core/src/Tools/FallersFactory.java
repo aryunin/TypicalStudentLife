@@ -4,7 +4,7 @@ import Model.GameObjects.Book;
 import Model.GameObjects.Bottle;
 import Model.GameObjects.GameObject;
 
-import static com.artemiiik.tsl.Main.random;
+import static com.artemiiik.tsl.TSL.random;
 
 public enum FallersFactory implements EmptyFactory{
     BookFactory {

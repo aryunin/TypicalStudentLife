@@ -7,7 +7,7 @@ import com.badlogic.gdx.Game;
 
 import java.util.Random;
 
-public class Main extends Game {
+public class TSL extends Game {
 	static public Random random = new Random();
 
 	@Override
