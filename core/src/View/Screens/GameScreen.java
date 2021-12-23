@@ -29,8 +29,7 @@ public class GameScreen implements Screen {
     private GameGUI gui;
     private RecordBook recordBook;
     private Array<GameObject> fallers;
-    private float fallDelay;
-    private float fallTimer;
+    private float fallFrequency;
 
     private float getRandomFloat(float min, float max) {
         return min + random.nextFloat() * (max - min + 1);
@@ -38,39 +37,38 @@ public class GameScreen implements Screen {
 
     private void updateObjects() {
         recordBook.update();
-        for (GameObject object : fallers) {
+        for (GameObject object : fallers)
             object.update();
-        }
     }
 
     private void drawObjects() {
         batch.begin();
         background.draw(batch);
         recordBook.draw(batch);
-        for (GameObject object : fallers) {
+        for (GameObject object : fallers)
             object.draw(batch);
-        }
         batch.end();
     }
 
+    private float fallTimer;
     private void createFallers() {
         fallTimer -= deltaCff;
         if(fallTimer <= 0) {
             FallersFactory fallersFactory = FallersFactory.getRandomFactory();
             float posX = getRandomFloat(0f, worldWidth-100f);
             fallers.add(fallersFactory.create(posX,worldHeight));
-            fallTimer = fallDelay;
+            fallTimer = 1/fallFrequency;
         }
     }
 
     private void checkCollision() {
         int index = Collision.check(recordBook, fallers);
         GameObject collisionObject;
-
         if (index != -1) {
             collisionObject = fallers.get(index);
             if(collisionObject.getClass() == Book.class) {
                 gui.score.add(1);
+                fallFrequency += 0.05f;
                 fallers.removeIndex(index);
             }
             if(collisionObject.getClass() == Bottle.class) {
@@ -80,8 +78,12 @@ public class GameScreen implements Screen {
         }
 
         for (int i = 0; i < fallers.size; i++) {
-            if(fallers.get(i).getBounds().getY() < -100f)
+            collisionObject = fallers.get(i);
+            if(collisionObject.getBounds().getY() < -100f) {
+                if (collisionObject.getClass() == Book.class)
+                    gui.mark.add(-1);
                 fallers.removeIndex(i);
+            }
         }
     }
 
@@ -94,8 +96,8 @@ public class GameScreen implements Screen {
         gui = new GameGUI(viewport);
         recordBook = new RecordBook(0f,0f);
         fallers = new Array<>();
-        fallDelay = 2f;
-        fallTimer = fallDelay;
+        fallFrequency = 0.5f;
+        fallTimer = fallFrequency;
     }
 
     @Override
