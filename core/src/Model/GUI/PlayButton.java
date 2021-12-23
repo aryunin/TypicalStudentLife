@@ -42,16 +42,16 @@ public class PlayButton extends TextButton {
         getStyle().checkedOffsetX *= scaling;
     }
 
+    public void setFontScale(float scaling) {
+        getLabel().setFontScale(defaultFontScaling*scaling);
+        getStyle().unpressedOffsetX *= scaling;
+        getStyle().pressedOffsetX *= scaling;
+        getStyle().checkedOffsetX *= scaling;
+    }
+
     public PlayButton(float posX, float posY) {
         super("Play", new Skin(Gdx.files.internal("GUI.json")), "button");
         scale(1f);
-        setPosition(posX, posY);
-        handleInput();
-    }
-
-    public PlayButton(float posX, float posY, float scaling) {
-        super("Play", new Skin(Gdx.files.internal("GUI.json")), "button");
-        scale(scaling);
         setPosition(posX, posY);
         handleInput();
     }

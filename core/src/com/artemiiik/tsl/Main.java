@@ -23,4 +23,3 @@ public class Main extends Game {
 		super.dispose();
 	}
 }
-// TODO: типы позиций не float

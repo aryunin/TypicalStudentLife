@@ -10,8 +10,8 @@ public class GameGUI extends GUI {
 
     public GameGUI(Viewport viewport) {
         super(viewport);
-        score = new Counter(0, 50f, GameScreen.worldHeight - 100f, 0.8f);
-        mark = new Counter(5, GameScreen.worldWidth - 50f, GameScreen.worldHeight - 100f, 0.8f);
+        score = new Counter("Score: ",0, 50f, GameScreen.worldHeight - 150f, 0.6f);
+        mark = new Counter("Mark: ", 5, GameScreen.worldWidth - 275f, GameScreen.worldHeight - 150f, 0.6f);
         stage.addActor(score);
         stage.addActor(mark);
     }

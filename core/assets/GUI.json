@@ -8,13 +8,19 @@
       "b": 0,
       "g": 0,
       "r": 0
+    },
+    "PencilBlue": {
+      "a": 1,
+      "b": 1,
+      "g": 0.33,
+      "r": 0.2
     }
   },
 
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "button": {
       "font": "default-font",
-      "fontColor": "white",
+      "fontColor": "PencilBlue",
       "up": "button",
       "checked": "button-checked",
       "unpressedOffsetX": 110,
@@ -26,7 +32,7 @@
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
     "label": {
       "font": "default-font",
-      "fontColor": "white"
+      "fontColor": "PencilBlue"
     }
   }
 }

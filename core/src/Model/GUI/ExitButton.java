@@ -1,7 +1,5 @@
 package Model.GUI;
 
-import Tools.ScreenManager;
-import View.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -40,16 +38,16 @@ public class ExitButton extends TextButton {
         getStyle().checkedOffsetX *= scaling;
     }
 
+    public void setFontScale(float scaling) {
+        getLabel().setFontScale(defaultFontScaling*scaling);
+        getStyle().unpressedOffsetX *= scaling;
+        getStyle().pressedOffsetX *= scaling;
+        getStyle().checkedOffsetX *= scaling;
+    }
+
     public ExitButton(float posX, float posY) {
         super("Exit", new Skin(Gdx.files.internal("GUI.json")), "button");
         scale(1f);
-        setPosition(posX, posY);
-        handleInput();
-    }
-
-    public ExitButton(float posX, float posY, float scaling) {
-        super("Exit", new Skin(Gdx.files.internal("GUI.json")), "button");
-        scale(scaling);
         setPosition(posX, posY);
         handleInput();
     }
