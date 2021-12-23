@@ -1,0 +1,48 @@
+
+GameObjects.png
+size: 512, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+book
+  rotate: false
+  xy: 206, 12
+  size: 100, 90
+  orig: 100, 90
+  offset: 0, 0
+  index: -1
+bottle
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+cigarette
+  rotate: false
+  xy: 104, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+feather
+  rotate: false
+  xy: 308, 2
+  size: 60, 100
+  orig: 60, 100
+  offset: 0, 0
+  index: -1
+recordbook
+  rotate: false
+  xy: 417, 57
+  size: 80, 45
+  orig: 80, 45
+  offset: 0, 0
+  index: -1
+student
+  rotate: false
+  xy: 370, 4
+  size: 45, 98
+  orig: 45, 98
+  offset: 0, 0
+  index: -1

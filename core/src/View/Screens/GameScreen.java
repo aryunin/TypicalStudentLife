@@ -27,7 +27,7 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private SpriteBatch batch;
     private GameGUI gui;
-    private RecordBook recordBook;
+    private Student player;
     private Array<GameObject> fallers;
     private float fallFrequency;
 
@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
     }
 
     private void updateObjects() {
-        recordBook.update();
+        player.update();
         for (GameObject object : fallers)
             object.update();
     }
@@ -44,34 +44,36 @@ public class GameScreen implements Screen {
     private void drawObjects() {
         batch.begin();
         background.draw(batch);
-        recordBook.draw(batch);
+        player.draw(batch);
         for (GameObject object : fallers)
             object.draw(batch);
         batch.end();
     }
 
     private float fallTimer;
+    static private float fallersOffsetX = 0f;
+    static private float fallersOffsetY = 100f;
     private void createFallers() {
         fallTimer -= deltaCff;
         if(fallTimer <= 0) {
             FallersFactory fallersFactory = FallersFactory.getRandomFactory();
-            float posX = getRandomFloat(0f, worldWidth-100f);
+            float posX = getRandomFloat(fallersOffsetX, worldWidth-fallersOffsetY);
             fallers.add(fallersFactory.create(posX,worldHeight));
             fallTimer = 1/fallFrequency;
         }
     }
 
     private void checkCollision() {
-        int index = Collision.check(recordBook, fallers);
+        int index = Collision.check(player, fallers);
         GameObject collisionObject;
         if (index != -1) {
             collisionObject = fallers.get(index);
-            if(collisionObject.getClass() == Book.class) {
+            if(GoodFaller.class.isAssignableFrom(collisionObject.getClass())) {
                 gui.score.add(1);
                 fallFrequency += 0.05f;
                 fallers.removeIndex(index);
             }
-            if(collisionObject.getClass() == Bottle.class) {
+            if(BadFaller.class.isAssignableFrom(collisionObject.getClass())) {
                 gui.mark.add(-1);
                 fallers.removeIndex(index);
             }
@@ -80,7 +82,7 @@ public class GameScreen implements Screen {
         for (int i = 0; i < fallers.size; i++) {
             collisionObject = fallers.get(i);
             if(collisionObject.getBounds().getY() < -100f) {
-                if (collisionObject.getClass() == Book.class)
+                if (GoodFaller.class.isAssignableFrom(collisionObject.getClass()))
                     gui.mark.add(-1);
                 fallers.removeIndex(i);
             }
@@ -94,7 +96,7 @@ public class GameScreen implements Screen {
         viewport = new FitViewport(worldWidth,worldHeight,camera);
         batch = new SpriteBatch();
         gui = new GameGUI(viewport);
-        recordBook = new RecordBook(0f,0f);
+        player = new Student(0f,0f);
         fallers = new Array<>();
         fallFrequency = 0.5f;
         fallTimer = fallFrequency;
