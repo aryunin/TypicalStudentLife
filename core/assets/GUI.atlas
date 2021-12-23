@@ -1,20 +1,20 @@
 
 GUI.png
-size: 2048, 512
+size: 1024, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 button
   rotate: false
-  xy: 974, 2
-  size: 970, 322
-  orig: 970, 322
+  xy: 404, 2
+  size: 400, 100
+  orig: 400, 100
   offset: 0, 0
   index: -1
 button-checked
   rotate: false
   xy: 2, 2
-  size: 970, 322
-  orig: 970, 322
+  size: 400, 100
+  orig: 400, 100
   offset: 0, 0
   index: -1
