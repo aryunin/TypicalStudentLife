@@ -1,6 +1,7 @@
 package Model.GameObjects;
 
 import Controller.ObjectControllers.ObjectController;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,21 +11,21 @@ abstract public class GameObject {
     private Sprite sprite;
     private Polygon bounds;
     private ObjectController controller;
-    private boolean isDeleted;
 
     public GameObject(TextureRegion region, float posX, float posY, float width, float height, float angle) {
         bounds = new Polygon();
         bounds.setVertices(new float[]{0f, 0f, width, 0f, width, height, 0f, height});
         bounds.setPosition(posX, posY);
-        bounds.setOrigin(width/2,height/2);
+        bounds.setOrigin(width/2f,height/2f);
         bounds.setRotation(angle);
 
         sprite = new Sprite(region);
-        sprite.setPosition(posX, posY);        sprite.setSize(width, height);
-        sprite.setOrigin(width/2,height/2);
+        sprite.setPosition(posX, posY);
+        sprite.setSize(width, height);
+        sprite.setOrigin(width/2f,height/2f);
         sprite.setRotation(angle);
 
-        isDeleted = false;
+        sprite.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
     public void draw(SpriteBatch batch) {
@@ -41,19 +42,7 @@ abstract public class GameObject {
         this.controller = controller;
     }
 
-    public void delete() {
-        isDeleted = true;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
     public void update() {
         if(controller != null) controller.update();
-    }
-
-    public void intersectWith(GameObject object) {
-
     }
 }

@@ -2,7 +2,7 @@ package com.artemiiik.tsl.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.artemiiik.tsl.Main;
+import com.artemiiik.tsl.TSL;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -10,6 +10,6 @@ public class DesktopLauncher {
 		config.width = 1024;
 		config.height = 768;
 		config.vSyncEnabled = true;
-		new LwjglApplication(new Main(), config);
+		new LwjglApplication(new TSL(), config);
 	}
 }

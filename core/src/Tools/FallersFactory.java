@@ -1,10 +1,8 @@
 package Tools;
 
-import Model.GameObjects.Book;
-import Model.GameObjects.Bottle;
-import Model.GameObjects.GameObject;
+import Model.GameObjects.*;
 
-import static com.artemiiik.tsl.Main.random;
+import static com.artemiiik.tsl.TSL.random;
 
 public enum FallersFactory implements EmptyFactory{
     BookFactory {
@@ -17,6 +15,24 @@ public enum FallersFactory implements EmptyFactory{
         @Override
         public GameObject create(float posX, float posY) {
             return new Bottle(posX, posY);
+        }
+    },
+    CigaretteFactory {
+        @Override
+        public GameObject create(float posX, float posY) {
+            return new Cigarette(posX, posY);
+        }
+    },
+    RecordBookFactory {
+        @Override
+        public GameObject create(float posX, float posY) {
+            return new RecordBook(posX, posY);
+        }
+    },
+    FeatherFactory {
+        @Override
+        public GameObject create(float posX, float posY) {
+            return new Feather(posX, posY);
         }
     };
 

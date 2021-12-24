@@ -1,6 +1,5 @@
 package Tools;
 
-import View.Screens.GameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
@@ -13,9 +12,5 @@ public class ScreenManager {
         if(currentScreen != null) currentScreen.dispose();
         currentScreen = newScreen;
         main.setScreen(currentScreen);
-    }
-
-    static public void dispose() {
-        currentScreen.dispose();
     }
 }

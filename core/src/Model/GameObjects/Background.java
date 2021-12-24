@@ -1,9 +1,10 @@
 package Model.GameObjects;
 
 import Tools.Assets;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Background extends GameObject{
     public Background(float posX, float posY) {
-        super(Assets.getAtlas("Background.atlas").findRegion("background"), posX, posY, 1024, 768, 0);
+        super(new TextureRegion(Assets.getTexture("background.jpg")), posX, posY, 1024f, 768f, 0f);
     }
 }

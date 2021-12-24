@@ -2,13 +2,12 @@ package com.artemiiik.tsl;
 
 import Tools.Assets;
 import Tools.ScreenManager;
-import View.Screens.GameScreen;
 import View.Screens.MenuScreen;
 import com.badlogic.gdx.Game;
 
 import java.util.Random;
 
-public class Main extends Game {
+public class TSL extends Game {
 	static public Random random = new Random();
 
 	@Override
@@ -17,10 +16,10 @@ public class Main extends Game {
 		ScreenManager.main = this;
 		ScreenManager.setScreen(new MenuScreen());
 	}
-	
+
 	@Override
-	public void dispose () {
-		ScreenManager.dispose();
+	public void dispose() {
 		Assets.dispose();
+		super.dispose();
 	}
 }
