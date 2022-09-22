@@ -9,4 +9,4 @@ Created using Java LibGDX framework\
 ### The end
 ![End](https://github.com/aryunin/TypicalStudentLife/blob/master/preview/end.png "End")
 ## Download
-![Try it now!](https://github.com/aryunin/TypicalStudentLife/blob/master/bin/TSL.exe)
+[Try it now!](https://github.com/aryunin/TypicalStudentLife/blob/master/bin/TSL.exe)
