@@ -1,6 +1,6 @@
 # TypicalStudentLife
 Your favorite computer game :)\
-Created using Java LibGDX framework\
+Created using Java LibGDX framework
 ## Gameplay
 ### Start
 ![Start](https://github.com/aryunin/TypicalStudentLife/blob/master/preview/start.png "Start")
